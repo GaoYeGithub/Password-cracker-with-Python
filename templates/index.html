@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Cracker Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        .result {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .suggestions {
+            background: #e9f7ef;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Cracker Test</h1>
+    <form method="POST">
+        <label for="password">Enter a password to test:</label>
+        <input type="text" id="password" name="password" required>
+        <button type="submit">Test Password</button>
+    </form>
+    {% if result %}
+    <div class="result">
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+        {% if suggestions %}
+        <div class="suggestions">
+            <h3>Your password was cracked. Please consider changing it to a stronger one.</h3>
+            <p>Here are some strong password suggestions:</p>
+            <ul>
+                {% for suggestion in suggestions %}
+                <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+            <p>Remember to use a mix of uppercase and lowercase letters, numbers, and special characters. Avoid using personal information in your passwords.</p>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
